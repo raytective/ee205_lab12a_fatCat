@@ -180,5 +180,14 @@ bool Weight::operator==(const Weight &rhs_Weight) const {
 }
 
 bool Weight::operator<(const Weight &rhs_Weight) const {
-    return false;
+    float lhs_weight = (bIsKnown) ? getWeight(Weight::POUND) : 0;
+    float rhs_weight = (rhs_Weight.bIsKnown) ? rhs_Weight.getWeight(Weight::POUND) : 0;
+
+    return lhs_weight < rhs_weight;
+}
+
+Weight &Weight::operator+=(float rhs_addToWeight) {
+    // Sus about this one
+    this->weight += rhs_addToWeight;
+    return *this;
 }
