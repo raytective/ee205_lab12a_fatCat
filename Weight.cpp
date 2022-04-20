@@ -71,22 +71,28 @@ float Weight::convertWeight(float fromWeight, Weight::UnitOfWeight fromUnit, Wei
 void Weight::setWeight(float newWeight) {
     isWeightValid( newWeight );
     Weight::weight = newWeight;
-    Weight::blsKnown = true;
+    Weight::bIsKnown = true;
 }
 
 void Weight::setWeight(float newWeight, Weight::UnitOfWeight weightUnits) {
     isWeightValid( newWeight );
     Weight::weight = newWeight;
     unitOfWeight = weightUnits;
-    Weight::blsKnown = true;
+    Weight::bIsKnown = true;
 }
 
 
 float Weight::getWeight() const noexcept {
-    if(!blsKnown)
+    if(!bIsKnown)
         return ::UNKNOWN_WEIGHT;
 
     return weight;
+}
+
+float Weight::getWeight(Weight::UnitOfWeight weightUnits) const noexcept {
+    float newWeight = convertWeight( Weight::weight, unitOfWeight, weightUnits );
+    return newWeight;
+
 }
 
 
@@ -102,7 +108,7 @@ Weight::UnitOfWeight Weight::getWeightUnit() const noexcept {
 }
 
 bool Weight::isWeightKnown() const noexcept {
-    return blsKnown;
+    return bIsKnown;
 }
 
 bool Weight::hasMaxWeight() const noexcept {
@@ -156,5 +162,23 @@ bool Weight::isWeightValid(float checkWeight) const noexcept {
     }
 
     return true;
+}
 
+bool Weight::validate() const noexcept {
+    if( !isWeightValid( Weight::weight )) {
+        return false;
+    }
+
+    return false;
+}
+
+bool Weight::operator==(const Weight &rhs_Weight) const {
+    float lhs_weight = (bIsKnown) ? getWeight(Weight::POUND) : 0;
+    float rhs_weight = (rhs_Weight.bIsKnown) ? rhs_Weight.getWeight(Weight::POUND) : 0;
+
+    return lhs_weight == rhs_weight;
+}
+
+bool Weight::operator<(const Weight &rhs_Weight) const {
+    return false;
 }

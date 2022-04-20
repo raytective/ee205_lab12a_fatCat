@@ -51,23 +51,28 @@ public:
     bool isWeightValid (float checkWeight) const noexcept;
     bool validate () const noexcept;
     void dump () const noexcept;
+
     bool operator== (const Weight &rhs_Weight) const;
     bool operator< (const Weight &rhs_Weight) const;
-
     Weight& operator+= (float rhs_addToWeight);
-
     friend std::ostream &operator<<(std::ostream &os, const Weight &weight);
 
 private:
     void setMaxWeight (float newMaxWeight);
 
-    bool blsKnown = false;
+    bool bIsKnown = false;
     bool bHasMax = false;
     enum UnitOfWeight unitOfWeight = POUND;
     float weight{};
     float maxWeight{};
 
 };
+
+
+
+
+
+
 
 
 
