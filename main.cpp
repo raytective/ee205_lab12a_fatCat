@@ -16,17 +16,11 @@ using namespace std;
 int main() {
     std::cout << "Hello, World!" << std::endl;
 
-    // make a few weights??
-    Weight nonWeight = Weight();
-    Weight baseWeight = Weight( 12.5 );
-    Weight maxWeight = Weight(Weight::KILO, 50.0 );
-    Weight newUnitWeight = Weight( 3.0, Weight::KILO);
-    Weight allWeight = Weight( 5.0, Weight::SLUG, 50.0 );
+    Weight emtpyCat = Weight();
+    Weight fullCat = Weight(5.0, Weight::KILO, 50.0);
 
-    // test getters/setters
-    nonWeight.setWeight( 2.0 );
-    allWeight.setWeight( 5.2 );
-    cout << allWeight.getWeight() << endl;
+    // populate emptyCat
+
 
 
     return 0;

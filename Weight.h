@@ -55,7 +55,9 @@ public:
     bool operator== (const Weight &rhs_Weight) const;
     bool operator< (const Weight &rhs_Weight) const;
     Weight& operator+= (float rhs_addToWeight);
-    friend std::ostream &operator<<(std::ostream &os, const Weight &weight);
+    friend std::ostream& operator<<(std::ostream &lhs_stream, const Weight &rhs_Weight);
+    friend std::ostream& operator<<(std::ostream &lhs_stream, const Weight::UnitOfWeight rhs_UnitOfWeight);
+
 
 private:
     void setMaxWeight (float newMaxWeight);
@@ -63,8 +65,12 @@ private:
     bool bIsKnown = false;
     bool bHasMax = false;
     enum UnitOfWeight unitOfWeight = POUND;
-    float weight{};
-    float maxWeight{};
+    float weight;
+    float maxWeight;
 
 };
+
+
+
+
 
