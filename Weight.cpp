@@ -81,9 +81,15 @@ void Weight::setWeight(float newWeight) {
 
 void Weight::setWeight(float newWeight, Weight::UnitOfWeight weightUnits) {
     /// CONVERT FROM WEIGHT UNITS TO HELD WEIGHT
+    isWeightValid(newWeight);
     Weight::weight = newWeight;
     unitOfWeight = weightUnits;
     Weight::bIsKnown = true;
+}
+
+void Weight::setMaxWeight(float newMaxWeight) {
+    Weight::maxWeight = newMaxWeight;
+    bHasMax = true;
 }
 
 
@@ -122,12 +128,13 @@ bool Weight::hasMaxWeight() const noexcept {
 
 
 ///////// CONSTRUCTORS //////////
+/// idk try and figure out what works best for these dudes
 Weight::Weight() noexcept {
     bIsKnown = false;
     bHasMax = false;
     unitOfWeight = POUND;
-    weight = ::UNKNOWN_WEIGHT;
-    maxWeight = ::UNKNOWN_WEIGHT;
+    setWeight(::UNKNOWN_WEIGHT);
+    setMaxWeight(::UNKNOWN_WEIGHT);
 }
 
 Weight::Weight(float newWeight) {
@@ -178,12 +185,8 @@ Weight::Weight(float newWeight, Weight::UnitOfWeight newUnitOfWeight, float newM
     setMaxWeight(newMaxWeight);
 }
 
-void Weight::setMaxWeight(float newMaxWeight) {
-    Weight::maxWeight = newMaxWeight;
-    bHasMax = true;
-}
 
-
+///////// VALIDATION //////////
 bool Weight::isWeightValid(float checkWeight) const noexcept {
     if( checkWeight <= 0 && checkWeight != ::UNKNOWN_WEIGHT) {
         return false;
@@ -202,6 +205,20 @@ bool Weight::validate() const noexcept {
 
     return false;
 }
+
+
+
+
+
+
+
+
+
+
+///////// THIS SHOULD ALL BE FIND HOPEFULLY ////////
+
+
+
 
 bool Weight::operator==(const Weight &rhs_Weight) const {
     float lhs_weight = (bIsKnown) ? getWeight(Weight::POUND) : 0;

@@ -19,8 +19,6 @@ int main() {
     Weight emtpyCat = Weight();
     Weight fullCat = Weight(5.0, Weight::KILO, 50.0);
 
-    // populate emptyCat
-
 
 
     return 0;
