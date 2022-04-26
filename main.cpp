@@ -16,11 +16,21 @@ using namespace std;
 int main() {
     std::cout << "Hello, World!" << std::endl;
 
+    // isKnown = false , hasMax = false
     Weight emtpyCat = Weight();
+    // isKnown = true , hasMax = false
+    Weight halfCat = Weight(10.0 );
+    // isKnown = false , hasMax = false
+    Weight slimCat = Weight(Weight::SLUG );
+    // isKnown = true , hasMax = true
     Weight fullCat = Weight(5.0, Weight::KILO, 50.0);
 
     emtpyCat.dump();
+    halfCat.dump();
+    slimCat.dump();
     fullCat.dump();
+
+
 
 
     return 0;
