@@ -19,6 +19,8 @@ int main() {
     Weight emtpyCat = Weight();
     Weight fullCat = Weight(5.0, Weight::KILO, 50.0);
 
+    emtpyCat.dump();
+    fullCat.dump();
 
 
     return 0;

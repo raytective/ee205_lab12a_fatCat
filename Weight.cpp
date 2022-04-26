@@ -76,26 +76,31 @@ float Weight::convertWeight(float fromWeight, Weight::UnitOfWeight fromUnit, Wei
 void Weight::setWeight(float newWeight) {
     isWeightValid( newWeight );
     Weight::weight = newWeight;
-    Weight::bIsKnown = true;
+    if( newWeight != ::UNKNOWN_WEIGHT) {
+        Weight::bIsKnown = true;
+    }
 }
 
 void Weight::setWeight(float newWeight, Weight::UnitOfWeight weightUnits) {
     /// CONVERT FROM WEIGHT UNITS TO HELD WEIGHT
     isWeightValid(newWeight);
-    Weight::weight = newWeight;
+    Weight::weight = convertWeight(newWeight,weightUnits,Weight::unitOfWeight);
     unitOfWeight = weightUnits;
     Weight::bIsKnown = true;
 }
 
 void Weight::setMaxWeight(float newMaxWeight) {
     Weight::maxWeight = newMaxWeight;
-    bHasMax = true;
+    if( newMaxWeight != ::UNKNOWN_WEIGHT) {
+        bHasMax = true;
+    }
 }
 
 
 float Weight::getWeight() const noexcept {
-    if(!bIsKnown)
+    if(!bIsKnown) {
         return ::UNKNOWN_WEIGHT;
+    }
 
     return weight;
 }
@@ -108,8 +113,9 @@ float Weight::getWeight(Weight::UnitOfWeight weightUnits) const noexcept {
 
 
 float Weight::getMaxWeight() const noexcept {
-    if( !bHasMax )
+    if( !bHasMax ) {
         return ::UNKNOWN_WEIGHT;
+    }
 
     return maxWeight;
 }
@@ -199,7 +205,7 @@ bool Weight::isWeightValid(float checkWeight) const noexcept {
 }
 
 bool Weight::validate() const noexcept {
-    if( !isWeightValid( Weight::weight )) {
+    if( isWeightValid( Weight::weight )) {
         return false;
     }
 
@@ -208,14 +214,7 @@ bool Weight::validate() const noexcept {
 
 
 
-
-
-
-
-
-
-
-///////// THIS SHOULD ALL BE FIND HOPEFULLY ////////
+///////// THIS SHOULD ALL BE FINE HOPEFULLY ////////
 
 
 
