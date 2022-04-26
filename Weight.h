@@ -62,11 +62,11 @@ public:
 private:
     void setMaxWeight (float newMaxWeight);
 
-    bool bIsKnown = false;
-    bool bHasMax = false;
-    enum UnitOfWeight unitOfWeight = POUND;
     float weight;
     float maxWeight;
+    enum UnitOfWeight unitOfWeight = POUND;
+    bool bIsKnown = false;
+    bool bHasMax = false;
 
 };
 
